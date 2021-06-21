@@ -12,15 +12,15 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-//        Article::truncate();
-//        $faker = \Faker\Factory::create();
-//
-//        for($i = 0;  $i > 30; $i++ ){
-//            Article::create([
-//               'title' => $faker->sentence,
-//               'body' => $faker->paragraph,
-//                'user_id' => rand(10, 20),
-//            ]);
-//        }
+        Article::truncate();
+        $faker = \Faker\Factory::create();
+
+        for($i = 0;  $i < 30; $i++ ){
+            Article::create([
+               'title' => $faker->sentence,
+               'body' => $faker->paragraph,
+                //'user_id' => rand(10, 20),
+            ]);
+        }
     }
 }
