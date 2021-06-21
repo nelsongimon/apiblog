@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
 
-        for($i = 0; $i > 30; $i++){
+        for($i = 0; $i < 20; $i++){
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
