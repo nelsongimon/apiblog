@@ -2,11 +2,15 @@
 
 namespace App\Exceptions;
 
+use App\Traits\ApiResponse;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponse;
     /**
      * A list of the exception types that are not reported.
      *
@@ -50,6 +54,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if($exception instanceof ModelNotFoundException){
+            return $this->errorResponse('El recurso no existe', 404);
+        }
+        if($exception instanceof ValidationException){
+            $errors = $exception->validator->errors()->getMessages();
+            return $this->errorResponse($errors, 422);
+        }
         return parent::render($request, $exception);
     }
 }
