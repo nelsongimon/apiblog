@@ -27,11 +27,12 @@ trait ApiResponse
         ], $code);
     }
 
-    private function successResponse($message, $code, $status = true)
+    private function successResponse($message, $code, $data = null, $status = true)
     {
         return response()->json([
             'status'  => $status,
             'message' => $message,
+            'data' => $data
         ], $code);
     }
 
